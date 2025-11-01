@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dashboard de Proyectos – Next.js + shadcn/ui
 
-## Getting Started
+Repositorio: [DAWA_S11](https://github.com/Vania-0731/DAWA_S11.git)
 
-First, run the development server:
+## 🚀 Stack
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- shadcn/ui (componentes copiados en `components/ui`)
+- Radix UI (debajo de shadcn/ui)
 
+## 📦 Instalación
 ```bash
+# Clonar
+git clone https://github.com/Vania-0731/DAWA_S11.git
+cd DAWA_S11/next-shadcn-ui
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Abrir en el navegador
+# http://localhost:3000/dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧭 Estructura relevante
+- `app/dashboard/page.tsx`: Página principal del dashboard (Tabs: Resumen, Proyectos, Equipo, Tareas, Configuración)
+- `components/DashboardContext.tsx`: Estado global en memoria + CRUD simulado (latencia incluida)
+- `components/ProjectForm.tsx`: Form para crear proyectos (validación + spinner)
+- `components/TeamManager.tsx`: CRUD de miembros del equipo (Calendar + Switch)
+- `components/TaskTable.tsx`: CRUD de tareas + Calendar + paginación
+- `components/ui/*`: Componentes de shadcn/ui instalados localmente
+- `app/globals.css`: Colores/tema (acento verde/teal)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Componentes shadcn/ui usados
+- Base: `button`, `card`, `input`, `label`, `dialog`, `tabs`, `select`, `badge`, `avatar`, `table`, `checkbox`, `switch`
+- Nuevos: `spinner`, `alert`, `calendar`, `pagination`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✅ Funcionalidades
+- **Resumen**
+  - Métricas calculadas desde el estado en memoria: total de proyectos, tareas (totales y completadas), miembros activos
+- **Proyectos**
+  - Crear proyecto desde `ProjectForm` (campos: name, description, category, priority, teamSize)
+  - Ver detalles (Dialog) y eliminar proyecto
+- **Equipo**
+  - CRUD completo de miembros con campos: `userId`, `role`, `name`, `email`, `position`, `birthdate`, `phone`, `projectId`, `isActive`
+  - Calendar para `birthdate`, Switch para `isActive`, Select para proyecto
+- **Tareas**
+  - CRUD completo con campos: `description`, `projectId`, `status`, `priority`, `userId`, `dateline`
+  - Calendar para `dateline` y paginación controlada por configuración
+- **Configuración**
+  - Preferencias simuladas: `itemsPerPage`, `notifications`, `theme`, `dateFormat`, `language`, `defaultProjectId`, `compactMode`, `showActivityFeed`
 
-## Learn More
+## 🎨 Tema/estilos
+- Paleta con acento verde/teal definida en `app/globals.css` (variables CSS)
+- Soporte para dark y light (desde las variables base)
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Notas técnicas
+- No se usan librerías externas de estado (Redux/Zustand); sólo React Context + hooks nativos
+- Para `Select` se evita `value=""`; se usa el valor sentinela `"none"` y se mapea a `null`/vacío donde corresponde
+- Los componentes shadcn/ui están copiados en `components/ui` y pueden personalizarse
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
