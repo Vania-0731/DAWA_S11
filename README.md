@@ -10,19 +10,28 @@ Repositorio: [DAWA_S11](https://github.com/Vania-0731/DAWA_S11.git)
 - Radix UI (debajo de shadcn/ui)
 
 ## 📦 Instalación
+
+Clonar
 ```bash
-# Clonar
 git clone https://github.com/Vania-0731/DAWA_S11.git
-cd DAWA_S11/next-shadcn-ui
-
-# Instalar dependencias
-npm install
-
-# Ejecutar en desarrollo
-npm run dev
-# Abrir en el navegador
-# http://localhost:3000/dashboard
 ```
+
+Entrar al proyecto
+```bash
+cd DAWA_S11/next-shadcn-ui
+```
+
+Instalar dependencias
+```bash
+npm install
+```
+
+Ejecutar en desarrollo
+```bash
+npm run dev
+```
+
+Nota: la ruta `/` redirige automáticamente a `/dashboard` (local y en Vercel).
 
 ## 🧭 Estructura relevante
 - `app/dashboard/page.tsx`: Página principal del dashboard (Tabs: Resumen, Proyectos, Equipo, Tareas, Configuración)
